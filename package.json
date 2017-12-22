@@ -10,5 +10,8 @@
     "vue"
   ],
   "author": "bentfu",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "vue": "^2.5.13"
+  }
 }
