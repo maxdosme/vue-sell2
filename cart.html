@@ -62,7 +62,8 @@
                   </ul>
                 </div>
                 <ul class="cart-item-list">
-                  <li>
+                  <!-- 循环商品 -->
+                  <li v-for="item in productList">
                     <div class="cart-tab-1">
                       <div class="cart-item-check">
                         <a href="javascript:void 0" class="item-check-btn">
@@ -70,20 +71,22 @@
                         </a> 
                       </div>
                       <div class="cart-item-pic">
-                        <img src="img/goods-1.jpg" alt="烟">
+                        <img v-bind:src="item.productImage" alt="烟">
                       </div>
                       <div class="cart-item-title">
-                        <div class="item-name">黄鹤楼香烟</div>
+                        <div class="item-name">{{ item.productName }}</div>
                       </div>
                       <div class="item-include">
                         <dl>
+                          <!-- v-for组件套用 -->
                           <dt>赠送:</dt>
-                          <dd>打火机</dd>
+                          <dd v-for="part in item.parts" v-text="part.partsName"></dd>
                         </dl>
                       </div>
                     </div>
                     <div class="cart-tab-2">
-                      <div class="item-price"></div>
+                      <!-- 产品单价 -->
+                      <div class="item-price">{{ item.productPrice }}</div>
                     </div>
                     <div class="cart-tab-3">
                       <div class="item-quantity">
