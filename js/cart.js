@@ -23,6 +23,7 @@ var vm = new Vue({
         });
     },
     methods: {
+        //  商品
         cartView: function (){
             //  定义this(vm)
             var _this = this;
@@ -35,6 +36,20 @@ var vm = new Vue({
                 //  总价格接口赋值
                 _this.totalMoney = res.data.result.totalMoney;
             });
+        },
+        //  价格改变，拿到两个值item 和 1；
+        changeMoney: function (product, way){
+        //   判断way 进行加减 >0:加，<0:减
+            if (way>0){
+                // 数量自加
+                product.productQuantity++;
+            }else {
+                product.productQuantity--;
+                // 商品最小值=1
+                if (product.productQuantity < 1){
+                    product.productQuantity = 1;
+                }
+            }
         }
     }
 })
