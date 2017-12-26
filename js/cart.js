@@ -50,6 +50,21 @@ var vm = new Vue({
                     product.productQuantity = 1;
                 }
             }
+        },
+        //  选中/取消方法
+        selectedProduct: function (item){
+            //  data.json中没有checked变量，需要插入checked变量
+            //  判断商品有没有选中
+            //  使用typeof判断checked变量是否存在
+            if (typeof item.checked == 'undefined'){
+                //  使用vm.$set设置一个变量，让vue侦听。
+                //  $set(对象,"变量名",值)
+                Vue.set(item,"checked",true);           //全局注册
+                //  this.$set(item,"checked",true);     // 局部注册
+            }else {
+                //  checked变量变为false
+                item.checked = !item.checked;
+            }
         }
     }
 })
