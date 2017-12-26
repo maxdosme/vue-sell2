@@ -4,7 +4,9 @@ var vm = new Vue({
        // 声明商品列表（数组）
         productList: [],
         //  声明总价格
-        totalMoney: 0
+        totalMoney: 0,
+        //  全选
+        checkAllFlag: false
     },
     //  过滤器（格式化数据）
     filters: {
@@ -65,6 +67,22 @@ var vm = new Vue({
                 //  checked变量变为false
                 item.checked = !item.checked;
             }
+        },
+        //  全选flag判断true还是false
+        checkAll: function(flag){
+            //  控制当前第一次选中(点击选中，在点击取消)判断flag是:true还是false
+            this.checkAllFlag = flag;
+            var _this = this;
+             //  使用forEach()进行遍历数组
+             this.productList.forEach(function (item, index){
+                //  首先判断商品有没有注册，如果没注册，则注册一下。
+            if (typeof item.checked == 'undefined'){
+                _this.$set(item,"checked",_this.checkAllFlag);     // 局部注册
+            }else {
+               //  取消全选：false
+               item.checked = _this.checkAllFlag;
+            }
+            });
         }
     }
 })
