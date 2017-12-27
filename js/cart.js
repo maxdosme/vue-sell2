@@ -114,7 +114,7 @@ var vm = new Vue({
             //  存储当前点击对象
             this.curProduct = item;
         },
-        // yes按钮
+        // yes按钮 
         delProduct: function(){
             //  正常删除思路，是返回后台提交删除字段，后台返回删除成功字段来进行操作。
             // 使用js进行性能优化
