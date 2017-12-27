@@ -87,6 +87,8 @@ var vm = new Vue({
                item.checked = _this.checkAllFlag;
             }
             });
+            // 全选调用计算总价
+            this.calcTotalPrice();
         },
         // 计算总价
         calcTotalPrice: function(){

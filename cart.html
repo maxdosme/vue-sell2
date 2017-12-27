@@ -137,7 +137,8 @@
               </div>
               <div class="cart-foot-r">
                 <div class="item-total">
-                  Item total: <span class="total-price">{{ totalMoney }}</span>
+                  <!-- 格式化总金额 -->
+                  Item total: <span class="total-price">{{ totalMoney | money('元') }}</span>
                 </div>
                 <div class="next-btn-wrap">
                   <a href="javascrit:;" class="btn btn--red" style="width: 200px">结账</a>
