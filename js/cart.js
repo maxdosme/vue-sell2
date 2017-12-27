@@ -6,7 +6,11 @@ var vm = new Vue({
         //  声明总价格
         totalMoney: 0,
         //  全选
-        checkAllFlag: false
+        checkAllFlag: false,
+        // 删除开关flag
+        delFlag: false,
+        // 当前选中值
+        curProduct: ''
     },
     //  过滤器（格式化数据）
     filters: {
@@ -102,6 +106,23 @@ var vm = new Vue({
                     _this.totalMoney += item.productPrice * item.productQuantity;
                 }
             });
+        },
+        // 确认删除
+        delConfirm: function(item){
+            //  点击后delFlag = true
+            this.delFlag = true;
+            //  存储当前点击对象
+            this.curProduct = item;
+        },
+        // yes按钮
+        delProduct: function(){
+            //  正常删除思路，是返回后台提交删除字段，后台返回删除成功字段来进行操作。
+            // 使用js进行性能优化
+            // 使用indexOf获取当前索引
+            var index = this.productList.indexOf(this.curProduct);
+            // 使用splice()删除产品，删除当前索引1个元素。
+            this.productList.splice(index, 1);
+            this.delFlag = false;
         }
     }
 })
