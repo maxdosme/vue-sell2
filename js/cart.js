@@ -36,7 +36,7 @@ var vm = new Vue({
                 _this.productList = res.data.result.list;
 
                 //  总价格接口赋值
-                _this.totalMoney = res.data.result.totalMoney;
+                // _this.totalMoney = res.data.result.totalMoney;
             });
         },
         //  价格改变，拿到两个值item 和 1；
@@ -52,6 +52,8 @@ var vm = new Vue({
                     product.productQuantity = 1;
                 }
             }
+            // 数量改变计算总价
+            this.calcTotalPrice();
         },
         //  选中/取消方法
         selectedProduct: function (item){
@@ -67,6 +69,8 @@ var vm = new Vue({
                 //  checked变量变为false
                 item.checked = !item.checked;
             }
+            // 调用选中计算总价
+            this.calcTotalPrice();
         },
         //  全选flag判断true还是false
         checkAll: function(flag){
@@ -82,6 +86,19 @@ var vm = new Vue({
                //  取消全选：false
                item.checked = _this.checkAllFlag;
             }
+            });
+        },
+        // 计算总价
+        calcTotalPrice: function(){
+            var _this = this;
+            // 遍历前总金额清零，不然会导致金额错误累加
+            this.totalMoney = 0;
+            this.productList.forEach(function (item, index){
+                //  如果选中
+                if(item.checked){
+                    //  商品单价*数量
+                    _this.totalMoney += item.productPrice * item.productQuantity;
+                }
             });
         }
     }
