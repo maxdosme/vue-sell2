@@ -25,6 +25,7 @@ var vm = new Vue({
         //  直接vm无法调用，因为mounted钩子函数替换。
         this.$nextTick(function (){
             // 代码保证 this.$el 在 document 中
+            //  注册vue-resource插件
             vm.cartView();
         });
     },
