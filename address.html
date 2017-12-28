@@ -81,7 +81,7 @@
                   </a>
                 </div>
                 <div class="addr-opration addr-set-default" v-if="!item.isDefault">
-                  <a href="javascript:;" class="addr-set-default-btn"><i>设为默认</i></a>
+                  <a href="javascript:;" class="addr-set-default-btn" @click="setDefault(item.addressId)"><i>设为默认</i></a>
                 </div>
                 <div class="addr-opration addr-default" v-if="item.isDefault">默认地址</div>
               </li>
@@ -115,11 +115,12 @@
         <div class="shipping-method-wrap">
           <div class="shipping-method">
             <ul>
-              <li>
+              <!-- logistic:1等于当前默认选中,click ==1 等于第一个被选中,==2则是第二个被选中。@click操作哪个被选中：改变logistic:1的值 -->
+              <li v-bind:class="{ 'check': logistic==1 }" @click="logistic = 1">
                 <div class="name">标准配送</div>
                 <div class="price">Free</div>
               </li>
-              <li>
+              <li v-bind:class="{ 'check': logistic==2 }" @click='logistic = 2'>
                 <div class="name">高级配送</div>
                 <div class="price">180</div>
               </li>
