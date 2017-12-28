@@ -63,7 +63,8 @@
         <div class="addr-list-wrap">
           <div class="addr-list">
             <ul>
-              <li v-for="(item, index) in addressList">
+              <!-- 过滤只显示三条地址，v-bind当前索引表达式获取当前索引，@click保存当前选中的索引（不然只是hover） -->
+              <li v-for="(item, index) in filterAddress" v-bind:class="{'check':index==currentIndex }" @click="currentIndex=index">
                 <dl>
                   <dt>{{ item.userName }}</dt>
                   <dd class="address">{{ item.streetName }}</dd>
@@ -97,7 +98,7 @@
           </div>
 
           <div class="shipping-addr-more">
-            <a class="addr-more-btn up-down-btn" href="javascript:">
+            <a class="addr-more-btn up-down-btn" href="javascript:" @click="moreClick">
               more
               <i class="i-up-down">
                 <i class="i-up-down-l"></i>
